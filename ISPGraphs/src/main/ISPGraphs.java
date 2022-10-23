@@ -4,7 +4,7 @@ import data.Graph;
 
 public class ISPGraphs {
 	public static void main(String[] args) {
-		Graph graph = new Graph(10);
+		Graph<Integer> graph = new Graph<Integer>();
 		
 		graph.addEdge(0, 1);
 		graph.addEdge(0, 2);

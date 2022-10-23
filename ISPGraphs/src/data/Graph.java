@@ -1,69 +1,92 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class Graph {
+public class Graph<T> {
 	private int numVertices;
-	private List<List<Edge>> edgesByVertices;
+	private HashMap<String, List<Edge>> edgesByVertices;
 	
 	private class Edge {
 		private int weight;
-		private int targetId;
-		private int sourceId;
+		private T target;
+		private T source;
 
-		public Edge(int target) {
-			this.targetId = target;
+		public Edge(T source, T target) {
+			this.source = source;
+			this.target = target;
 		}
 		
 		public int getWeight() {
 			return this.weight;
 		}
 		
-		public int getTarget() {
-			return this.targetId;
+		public T getConnected(T node) {
+			if (node.equals(this.target)) {
+				return this.source;
+			}
+			
+			if (node.equals(this.source)) {
+				return this.target;
+			}
+			
+			return null;
 		}
 	}
 	
-	// number of vertices has to be known before adding edges for less spaghetti code
-	// alternatively you could just handle a list of edges, but you would always need to search for the current vertex -> inefficient
-	public Graph(int numVertices) {
-		this.numVertices = numVertices;
-		this.edgesByVertices = new ArrayList<List<Edge>>();
-		for (int i = 0; i < numVertices; i++) {
-			// initialize edge list for each vertex
-			this.edgesByVertices.add(new ArrayList<Edge>());
-		}
+	public Graph() {
+		this.edgesByVertices = new HashMap<String, List<Edge>>();
+		this.numVertices = 0;
 	}
 
-	public void addEdge(int v, int w) {
-		// the edge did not follow the rules
-		if (v > numVertices || w > numVertices) {
-			return;
+	// assuming undirected graphs
+	// 
+	public void addEdge(T v, T w) {
+		System.out.println(this.edgesByVertices.get(v.toString()));
+		if (this.edgesByVertices.get(v.toString()) == null) {
+			this.edgesByVertices.put(v.toString(), new ArrayList<Edge>());
+			this.numVertices++;
 		}
+		
+		if (this.edgesByVertices.get(w.toString()) == null) {
+			this.edgesByVertices.put(w.toString(), new ArrayList<Edge>());
+			this.numVertices++;
+		}
+
+		Edge edge = new Edge(v, w);
 
 		// when visiting either vertex, we have to know that this edge exists
-		Edge outgoing = new Edge(w);
-		Edge incoming = new Edge(v);
-		
-		this.edgesByVertices.get(v).add(outgoing);
-		this.edgesByVertices.get(w).add(incoming);
+		this.edgesByVertices.get(v.toString()).add(edge);
+		this.edgesByVertices.get(w.toString()).add(edge);
 	}
 	
-	public void DFSTraverse(int index, boolean[] visited) {
-		System.out.println("" + index + " -> ");
-		visited[index] = true;
-		List<Edge> edgeList = this.edgesByVertices.get(index);
+	public void DFSTraverse(T current, HashMap<String, Boolean> visited) {
+		System.out.println("" + current.toString() + " -> ");
+		visited.put(current.toString(), true);
+		List<Edge> edgeList = this.edgesByVertices.get(current.toString());
 		for (Edge edge : edgeList) {
-			if (visited[edge.targetId]) {
+			T connected = edge.getConnected(current);
+			if (connected == null) {
 				continue;
 			}
-			this.DFSTraverse(edge.targetId, visited);
+			
+			if (visited.get(connected.toString())) {
+				continue;
+			}
+			this.DFSTraverse(connected, visited);
 		}
 	}
 	
-	public void DFS(int startingIndex) {
-		boolean[] visited = new boolean[this.numVertices];
-		this.DFSTraverse(startingIndex, visited);
+	public void DFS(T start) {
+		HashMap<String, Boolean> visited = new HashMap<String, Boolean>();
+		
+		for(String label : this.edgesByVertices.keySet()) {
+			visited.put(label, false);
+		}
+		
+		this.DFSTraverse(start, visited);
 	}
 }
+
+
