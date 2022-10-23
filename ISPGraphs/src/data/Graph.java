@@ -10,6 +10,7 @@ public class Graph {
 	private class Edge {
 		private int weight;
 		private int targetId;
+		private int sourceId;
 
 		public Edge(int target) {
 			this.targetId = target;
