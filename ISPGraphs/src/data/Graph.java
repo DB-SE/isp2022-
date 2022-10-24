@@ -22,6 +22,10 @@ public class Graph<T> {
 			return this.weight;
 		}
 		
+		public void setWeight(int w) {
+			this.weight = w;
+		}
+		
 		public T getConnected(T node) {
 			if (node.equals(this.target)) {
 				return this.source;
@@ -33,6 +37,7 @@ public class Graph<T> {
 			
 			return null;
 		}
+		
 	}
 	
 	public Graph() {
@@ -55,6 +60,27 @@ public class Graph<T> {
 		}
 
 		Edge edge = new Edge(v, w);
+		edge.weight = 1;
+
+		// when visiting either vertex, we have to know that this edge exists
+		this.edgesByVertices.get(v.toString()).add(edge);
+		this.edgesByVertices.get(w.toString()).add(edge);
+	}
+	
+	public void addEdge(T v, T w, int weight) {
+		System.out.println(this.edgesByVertices.get(v.toString()));
+		if (this.edgesByVertices.get(v.toString()) == null) {
+			this.edgesByVertices.put(v.toString(), new ArrayList<Edge>());
+			this.numVertices++;
+		}
+		
+		if (this.edgesByVertices.get(w.toString()) == null) {
+			this.edgesByVertices.put(w.toString(), new ArrayList<Edge>());
+			this.numVertices++;
+		}
+
+		Edge edge = new Edge(v, w);
+		edge.setWeight(weight);
 
 		// when visiting either vertex, we have to know that this edge exists
 		this.edgesByVertices.get(v.toString()).add(edge);
@@ -86,6 +112,63 @@ public class Graph<T> {
 		}
 		
 		this.DFSTraverse(start, visited);
+	}
+	
+	public List<Edge> getAllEdges() {
+		List<Edge> allEdges = new ArrayList<Edge>();
+		
+		for (String node : this.edgesByVertices.keySet())
+		{
+			for(Edge edge : this.edgesByVertices.get(node))
+			{
+				allEdges.add(edge);
+			}
+		}
+		
+		return allEdges;
+	}
+	
+	public Graph<T> MST() {
+		Graph<T> minGraph = new Graph<T>();
+		
+		List<String> included = new ArrayList<String>();
+			
+		List<Edge> allEdges = this.getAllEdges();
+		
+		while(minGraph.numVertices != this.numVertices)
+		{
+			int minWeight = 0;
+			Edge minEdge = null;
+		
+			for(Edge edge : allEdges)
+			{
+				if(included.isEmpty())
+				{
+					minGraph.addEdge(edge.source, edge.target, edge.weight);
+					included.add(edge.source.toString());
+					included.add(edge.target.toString());
+				}
+				else if(included.contains(edge.source.toString()) ^ included.contains(edge.target.toString()))
+				{
+					if(edge.weight <= minWeight)
+					{
+						minEdge = edge;
+					}
+				}
+			}
+			
+			minGraph.addEdge(minEdge.source, minEdge.target, minEdge.weight);
+			if(!included.contains(minEdge.source.toString()))
+			{
+				included.add(minEdge.source.toString());
+			}
+			if(!included.contains(minEdge.target.toString()))
+			{
+				included.add(minEdge.target.toString());
+			}
+		}
+		
+		return minGraph;
 	}
 }
 
