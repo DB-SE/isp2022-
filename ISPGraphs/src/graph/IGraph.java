@@ -5,11 +5,11 @@ import java.util.List;
 
 import edge.Edge;
 
-public interface IGraph<T> {
-	public void addEdge(Edge<T> edge);
-	public void DFS(T start);
-	public IGraph<T> MST();
-	public HashMap<String, List<Edge<T>>> getEdgesByVertices();
-	public List<Edge<T>> getEdgesAsList();
+public interface IGraph {
+	public void addEdge(Edge edge);
+	public void DFS(Node start);
+	public IGraph MST();
+	public HashMap<String, List<Edge> getEdgesByVertices();
+	public List<Edge> getEdgesAsList();
 	public int getNumVertices();
 }

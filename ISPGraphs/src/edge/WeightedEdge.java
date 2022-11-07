@@ -1,9 +1,9 @@
 package edge;
 
-public class WeightedEdge<T> extends Edge<T> {
+public class WeightedEdge extends Edge {
 	private int weight;
 	
-	public WeightedEdge(T source, T target, int weight) {
+	public WeightedEdge(Node source, Node target, int weight) {
 		super(source, target);
 		this.weight = weight;
 	}

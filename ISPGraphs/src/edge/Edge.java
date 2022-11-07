@@ -1,15 +1,15 @@
 package edge;
 
-public class Edge<T> {
-	private T target;
-	private T source;
+public class Edge {
+	private Node target;
+	private Node source;
 
-	public Edge(T source, T target) {
+	public Edge(Node source, Node target) {
 		this.source = source;
 		this.target = target;
 	}
 	
-	public T getConnected(T node) {
+	public Node getConnected(Node node) {
 		if (node.equals(this.target)) {
 			return this.source;
 		}
@@ -21,11 +21,11 @@ public class Edge<T> {
 		return null;
 	}
 	
-	public T getSource() {
+	public Node getSource() {
 		return this.source;
 	}
 	
-	public T getTarget() {
+	public Node getTarget() {
 		return this.target;
 	}
 }

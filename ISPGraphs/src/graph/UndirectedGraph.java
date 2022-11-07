@@ -6,25 +6,25 @@ import java.util.List;
 
 import edge.Edge;
 
-public class UndirectedGraph<T> implements IGraph<T> {
+public class UndirectedGraph implements IGraph {
 	private int numVertices;
-	private HashMap<String, List<Edge<T>>> edgesByVertices;
+	private HashMap<String, List<Edge>> edgesByVertices;
 	
 	public UndirectedGraph() {
-		this.edgesByVertices = new HashMap<String, List<Edge<T>>>();
+		this.edgesByVertices = new HashMap<String, List<Edge>>();
 		this.numVertices = 0;
 	}
 	
 	@Override
-	public void addEdge(Edge<T> edge) {
+	public void addEdge(Edge edge) {
 		System.out.println(this.edgesByVertices.get(edge.getSource().toString()));
 		if (this.edgesByVertices.get(edge.getSource().toString()) == null) {
-			this.edgesByVertices.put(edge.getSource().toString(), new ArrayList<Edge<T>>());
+			this.edgesByVertices.put(edge.getSource().toString(), new ArrayList<Edge>());
 			this.numVertices++;
 		}
 		
 		if (this.edgesByVertices.get(edge.getTarget().toString()) == null) {
-			this.edgesByVertices.put(edge.getTarget().toString(), new ArrayList<Edge<T>>());
+			this.edgesByVertices.put(edge.getTarget().toString(), new ArrayList<Edge>());
 			this.numVertices++;
 		}
 
@@ -33,11 +33,11 @@ public class UndirectedGraph<T> implements IGraph<T> {
 		this.edgesByVertices.get(edge.getTarget().toString()).add(edge);
 	}
 	
-	public void DFSTraverse(T current, HashMap<String, Boolean> visited) {
+	public void DFSTraverse(Node current, HashMap<String, Boolean> visited) {
 		System.out.println("" + current.toString() + " -> ");
 		visited.put(current.toString(), true);
-		List<Edge<T>> edgeList = this.edgesByVertices.get(current.toString());
-		for (Edge<T> edge : edgeList) {
+		List<Edge> edgeList = this.edgesByVertices.get(current.toString());
+		for (Edge edge : edgeList) {
 			T connected = edge.getConnected(current);
 			if (connected == null) {
 				continue;
@@ -61,12 +61,12 @@ public class UndirectedGraph<T> implements IGraph<T> {
 		this.DFSTraverse(start, visited);
 	}
 	
-	public List<Edge<T>> getEdgesAsList() {
-		List<Edge<T>> allEdges = new ArrayList<Edge<T>>();
+	public List<Edge> getEdgesAsList() {
+		List<Edge> allEdges = new ArrayList<Edge>();
 		
 		for (String node : this.edgesByVertices.keySet())
 		{
-			for(Edge<T> edge : this.edgesByVertices.get(node))
+			for(Edge edge : this.edgesByVertices.get(node))
 			{
 				allEdges.add(edge);
 			}
@@ -75,16 +75,16 @@ public class UndirectedGraph<T> implements IGraph<T> {
 		return allEdges;
 	}
 	
-	public UndirectedGraph<T> MST() {
-		UndirectedGraph<T> minGraph = new UndirectedGraph<T>();
+	public UndirectedGraph MST() {
+		UndirectedGraph minGraph = new UndirectedGraph();
 		
 		List<String> included = new ArrayList<String>();
 			
-		List<Edge<T>> allEdges = this.getEdgesAsList();
+		List<Edge> allEdges = this.getEdgesAsList();
 		
 		while(minGraph.getNumVertices() != this.getNumVertices())
 		{
-			for(Edge<T> edge : allEdges)
+			for(Edge edge : allEdges)
 			{
 				if(included.isEmpty())
 				{
@@ -111,7 +111,7 @@ public class UndirectedGraph<T> implements IGraph<T> {
 	}
 
 	@Override
-	public HashMap<String, List<Edge<T>>> getEdgesByVertices() {
+	public HashMap<String, List<Edge>> getEdgesByVertices() {
 		return this.edgesByVertices;
 	}
 
