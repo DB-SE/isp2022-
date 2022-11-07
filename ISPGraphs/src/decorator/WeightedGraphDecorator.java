@@ -15,7 +15,7 @@ public class WeightedGraphDecorator<T> extends AbstractGraphDecorator<T> {
 	
 	@Override
 	public void addEdge(Edge<T> edge) {
-		if (edge instanceof WeightedEdge<T>) {
+		if (!(edge instanceof WeightedEdge<T>)) {
 			this.graph.addEdge(new WeightedEdge<T>(edge.getSource(), edge.getTarget(), 1));
 			return;
 		}
