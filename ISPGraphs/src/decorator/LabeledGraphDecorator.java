@@ -1,8 +1,9 @@
 package decorator;
 
 import edge.Edge;
-import edge.WeightedEdge;
 import graph.IGraph;
+import node.LabeledNode;
+import node.Node;
 
 public class LabeledGraphDecorator extends AbstractGraphDecorator {
 
@@ -19,12 +20,12 @@ public class LabeledGraphDecorator extends AbstractGraphDecorator {
 
 		if(!(edge.getSource() instanceof LabeledNode)) {
 			source = (LabeledNode)edge.getSource();
-			source.setLabel(Node.toString());
+			((LabeledNode)source).setLabel(source.toString());
 		}
 
 		if(!(edge.getTarget() instanceof LabeledNode)) {
 			target = (LabeledNode)edge.getTarget();
-			target.setLabel(Node.toString());
+			((LabeledNode)target).setLabel(target.toString());
 		}
 
 		Edge labeledEdge = new Edge(source, target);

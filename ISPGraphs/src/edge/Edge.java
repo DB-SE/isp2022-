@@ -1,6 +1,6 @@
 package edge;
 
-import node;
+import node.Node;
 
 public class Edge {
 	private Node target;

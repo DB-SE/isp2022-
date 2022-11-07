@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import edge.Edge;
+import node.Node;
 
 public interface IGraph {
 	public void addEdge(Edge edge);

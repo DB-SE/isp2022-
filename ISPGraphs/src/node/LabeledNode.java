@@ -1,7 +1,5 @@
 package node;
 
-import java.util.List;
-
 public class LabeledNode extends Node {
 
 	private String label;
@@ -16,11 +14,11 @@ public class LabeledNode extends Node {
 		return this.label;
 	}
 
-	public String setLabel(label) {
+	public void setLabel(String label) {
 		this.label = label;
 	}
 
-	@override
+	@Override
 	public String toString() {
 		return this.label;
 	}

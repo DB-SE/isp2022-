@@ -5,6 +5,7 @@ import java.util.List;
 
 import edge.Edge;
 import graph.IGraph;
+import node.Node;
 
 public abstract class AbstractGraphDecorator implements IGraph {
 	

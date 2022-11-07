@@ -1,5 +1,6 @@
 package node;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
@@ -10,9 +11,7 @@ public class Node {
 		this.connectedNodes = new ArrayList<Node>();
 	}
 
-	public getConnectedNodes() {
+	public List<Node> getConnectedNodes() {
 		return this.connectedNodes;
 	}
-
-
 }
