@@ -5,44 +5,45 @@ import java.util.HashMap;
 import java.util.List;
 
 import edge.Edge;
+import node;
 
-public class DirectedGraph<T> implements IGraph<T> {
+public class DirectedGraph implements IGraph {
 	private int numVertices;
-	private HashMap<String, List<Edge<T>>> edgesByVertices;
+	private HashMap<Node, List<Edge>> edgesByVertices;
 	
 	public DirectedGraph() {
-		this.edgesByVertices = new HashMap<String, List<Edge<T>>>();
+		this.edgesByVertices = new HashMap<Node, List<Edge>>();
 		this.numVertices = 0;
 	}
 	
 	@Override
-	public void addEdge(Edge<T> edge) {
-		System.out.println(this.edgesByVertices.get(edge.getSource().toString()));
-		if (this.edgesByVertices.get(edge.getSource().toString()) == null) {
-			this.edgesByVertices.put(edge.getSource().toString(), new ArrayList<Edge<T>>());
+	public void addEdge(Edge edge) {
+		System.out.println(this.edgesByVertices.get(edge.getSource()));
+		if (this.edgesByVertices.get(edge.getSource()) == null) {
+			this.edgesByVertices.put(edge.getSource(), new ArrayList<Edge>());
 			this.numVertices++;
 		}
 		
-		if (this.edgesByVertices.get(edge.getTarget().toString()) == null) {
-			this.edgesByVertices.put(edge.getTarget().toString(), new ArrayList<Edge<T>>());
+		if (this.edgesByVertices.get(edge.getTarget()) == null) {
+			this.edgesByVertices.put(edge.getTarget(), new ArrayList<Edge>());
 			this.numVertices++;
 		}
 
 		// when visiting either vertex, we have to know that this edge exists
-		this.edgesByVertices.get(edge.getSource().toString()).add(edge);
+		this.edgesByVertices.get(edge.getSource()).add(edge);
 	}
 	
-	public void DFSTraverse(T current, HashMap<String, Boolean> visited) {
+	public void DFSTraverse(Node current, HashMap<Node, Boolean> visited) {
 		System.out.println("" + current.toString() + " -> ");
-		visited.put(current.toString(), true);
-		List<Edge<T>> edgeList = this.edgesByVertices.get(current.toString());
-		for (Edge<T> edge : edgeList) {
-			T connected = edge.getConnected(current);
+		visited.put(current, true);
+		List<Edge> edgeList = this.edgesByVertices.get(current);
+		for (Edge edge : edgeList) {
+			Node connected = edge.getConnected(current);
 			if (connected == null) {
 				continue;
 			}
 			
-			if (visited.get(connected.toString())) {
+			if (visited.get(connected)) {
 				continue;
 			}
 			this.DFSTraverse(connected, visited);
@@ -50,22 +51,22 @@ public class DirectedGraph<T> implements IGraph<T> {
 	}
 	
 	@Override
-	public void DFS(T start) {
-		HashMap<String, Boolean> visited = new HashMap<String, Boolean>();
+	public void DFS(Node start) {
+		HashMap<Node, Boolean> visited = new HashMap<Node, Boolean>();
 		
-		for(String label : this.edgesByVertices.keySet()) {
+		for(Node label : this.edgesByVertices.keySet()) {
 			visited.put(label, false);
 		}
 		
 		this.DFSTraverse(start, visited);
 	}
 	
-	public List<Edge<T>> getEdgesAsList() {
-		List<Edge<T>> allEdges = new ArrayList<Edge<T>>();
+	public List<Edge> getEdgesAsList() {
+		List<Edge> allEdges = new ArrayList<Edge>();
 		
-		for (String node : this.edgesByVertices.keySet())
+		for (Node node : this.edgesByVertices.keySet())
 		{
-			for(Edge<T> edge : this.edgesByVertices.get(node))
+			for(Edge edge : this.edgesByVertices.get(node))
 			{
 				allEdges.add(edge);
 			}
@@ -74,33 +75,33 @@ public class DirectedGraph<T> implements IGraph<T> {
 		return allEdges;
 	}
 	
-	public DirectedGraph<T> MST() {
-		DirectedGraph<T> minGraph = new DirectedGraph<T>();
+	public DirectedGraph MST() {
+		DirectedGraph minGraph = new DirectedGraph();
 		
-		List<String> included = new ArrayList<String>();
+		List<Node> included = new ArrayList<Node>();
 			
-		List<Edge<T>> allEdges = this.getEdgesAsList();
+		List<Edge> allEdges = this.getEdgesAsList();
 		
 		while(minGraph.getNumVertices() != this.getNumVertices())
 		{
-			for(Edge<T> edge : allEdges)
+			for(Edge edge : allEdges)
 			{
 				if(included.isEmpty())
 				{
 					minGraph.addEdge(edge);
-					included.add(edge.getSource().toString());
-					included.add(edge.getTarget().toString());
+					included.add(edge.getSource());
+					included.add(edge.getTarget());
 				}
-				else if(included.contains(edge.getSource().toString()) ^ included.contains(edge.getTarget().toString()))
+				else if(included.contains(edge.getSource()) ^ included.contains(edge.getTarget()))
 				{
 					minGraph.addEdge(edge);
-					if(!included.contains(edge.getSource().toString()))
+					if(!included.contains(edge.getSource()))
 					{
-						included.add(edge.getSource().toString());
+						included.add(edge.getSource());
 					}
-					if(!included.contains(edge.getTarget().toString()))
+					if(!included.contains(edge.getTarget()))
 					{
-						included.add(edge.getTarget().toString());
+						included.add(edge.getTarget());
 					}
 				}
 			}
@@ -110,7 +111,7 @@ public class DirectedGraph<T> implements IGraph<T> {
 	}
 
 	@Override
-	public HashMap<String, List<Edge<T>>> getEdgesByVertices() {
+	public HashMap<Node, List<Edge>> getEdgesByVertices() {
 		return this.edgesByVertices;
 	}
 
@@ -119,3 +120,5 @@ public class DirectedGraph<T> implements IGraph<T> {
 		return this.numVertices;
 	}
 }
+
+

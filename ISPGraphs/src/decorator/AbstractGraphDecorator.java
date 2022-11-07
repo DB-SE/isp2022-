@@ -6,38 +6,38 @@ import java.util.List;
 import edge.Edge;
 import graph.IGraph;
 
-public abstract class AbstractGraphDecorator<T> implements IGraph<T> {
+public abstract class AbstractGraphDecorator implements IGraph {
 	
-	protected IGraph<T> graph;
+	protected IGraph graph;
 	
-	public AbstractGraphDecorator(IGraph<T> graph) {
+	public AbstractGraphDecorator(IGraph graph) {
 		this.graph = graph;
 	}
 
 	@Override
-	public void addEdge(Edge<T> edge) {
+	public void addEdge(Edge edge) {
 		this.graph.addEdge(edge);
 	}
 
 	@Override
-	public void DFS(T start) {
+	public void DFS(Node start) {
 		this.graph.DFS(start);
 	}
 
 	@Override
-	public IGraph<T> MST() {
+	public IGraph MST() {
 		return this.graph.MST();
 	}
 	
 
 	@Override
-	public HashMap<String, List<Edge<T>>> getEdgesByVertices() {
+	public HashMap<Node, List<Edge>> getEdgesByVertices() {
 		// TODO Auto-generated method stub
 		return this.graph.getEdgesByVertices();
 	}
 
 	@Override
-	public List<Edge<T>> getEdgesAsList() {
+	public List<Edge> getEdgesAsList() {
 		// TODO Auto-generated method stub
 		return this.graph.getEdgesAsList();
 	}

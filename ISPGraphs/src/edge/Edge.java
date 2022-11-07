@@ -1,5 +1,7 @@
 package edge;
 
+import node;
+
 public class Edge {
 	private Node target;
 	private Node source;

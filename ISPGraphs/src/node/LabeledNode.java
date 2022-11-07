@@ -1,21 +1,27 @@
-package graph;
+package node;
 
 import java.util.List;
 
-import edge.Edge;
-
 public class LabeledNode extends Node {
 
-	private string label;
+	private String label;
 
-	public LabeledNode(string label) {
+	public LabeledNode(String label) {
 		super();
 		
 		this.label = label;
 	}
 
-	public string getLabel() {
+	public String getLabel() {
 		return this.label;
 	}
 
+	public String setLabel(label) {
+		this.label = label;
+	}
+
+	@override
+	public String toString() {
+		return this.label;
+	}
 }

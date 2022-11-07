@@ -8,43 +8,43 @@ import edge.WeightedEdge;
 import graph.IGraph;
 import graph.UndirectedGraph;
 
-public class WeightedGraphDecorator<T> extends AbstractGraphDecorator<T> {
-	public WeightedGraphDecorator(IGraph<T> graph) {
+public class WeightedGraphDecorator extends AbstractGraphDecorator {
+	public WeightedGraphDecorator(IGraph graph) {
 		super(graph);
 	}
 	
 	@Override
-	public void addEdge(Edge<T> edge) {
-		if (!(edge instanceof WeightedEdge<T>)) {
-			this.graph.addEdge(new WeightedEdge<T>(edge.getSource(), edge.getTarget(), 1));
+	public void addEdge(Edge edge) {
+		if (!(edge instanceof WeightedEdge)) {
+			this.graph.addEdge(new WeightedEdge(edge.getSource(), edge.getTarget(), 1));
 			return;
 		}
 		this.graph.addEdge(edge);
 	}
 
 	@Override
-	public IGraph<T> MST() {
-		IGraph<T> minGraph = new UndirectedGraph<T>();
+	public IGraph MST() {
+		IGraph minGraph = new UndirectedGraph();
 		
-		List<String> included = new ArrayList<String>();
+		List<Node> included = new ArrayList<Node>();
 			
-		List<Edge<T>> allEdges = this.getEdgesAsList();
+		List<Edge> allEdges = this.getEdgesAsList();
 		
 		while(minGraph.getNumVertices() != this.getNumVertices())
 		{
 			int minWeight = 0;
-			WeightedEdge<T> minEdge = null;
+			WeightedEdge minEdge = null;
 		
-			for(Edge<T> edge : allEdges)
+			for(Edge edge : allEdges)
 			{
-				WeightedEdge<T> weighted = (WeightedEdge<T>) edge;
+				WeightedEdge weighted = (WeightedEdge) edge;
 				if(included.isEmpty())
 				{
 					minGraph.addEdge(weighted);
-					included.add(edge.getSource().toString());
-					included.add(edge.getTarget().toString());
+					included.add(edge.getSource());
+					included.add(edge.getTarget());
 				}
-				else if(included.contains(edge.getSource().toString()) ^ included.contains(edge.getTarget().toString()))
+				else if(included.contains(edge.getSource()) ^ included.contains(edge.getTarget()))
 				{
 					if(weighted.getWeight() <= minWeight)
 					{
@@ -54,13 +54,13 @@ public class WeightedGraphDecorator<T> extends AbstractGraphDecorator<T> {
 			}
 			
 			minGraph.addEdge(minEdge);
-			if(!included.contains(minEdge.getSource().toString()))
+			if(!included.contains(minEdge.getSource()))
 			{
-				included.add(minEdge.getSource().toString());
+				included.add(minEdge.getSource());
 			}
-			if(!included.contains(minEdge.getTarget().toString()))
+			if(!included.contains(minEdge.getTarget()))
 			{
-				included.add(minEdge.getTarget().toString());
+				included.add(minEdge.getTarget());
 			}
 		}
 		

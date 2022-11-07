@@ -1,5 +1,7 @@
 package edge;
 
+import node;
+
 public class WeightedEdge extends Edge {
 	private int weight;
 	

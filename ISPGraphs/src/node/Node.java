@@ -1,8 +1,6 @@
-package graph;
+package node;
 
 import java.util.List;
-
-import edge.Edge;
 
 public class Node {
 	

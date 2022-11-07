@@ -9,7 +9,7 @@ public interface IGraph {
 	public void addEdge(Edge edge);
 	public void DFS(Node start);
 	public IGraph MST();
-	public HashMap<String, List<Edge> getEdgesByVertices();
+	public HashMap<Node, List<Edge>> getEdgesByVertices();
 	public List<Edge> getEdgesAsList();
 	public int getNumVertices();
 }
