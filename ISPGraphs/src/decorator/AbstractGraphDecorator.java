@@ -42,6 +42,11 @@ public abstract class AbstractGraphDecorator implements IGraph {
 		// TODO Auto-generated method stub
 		return this.graph.getEdgesAsList();
 	}
+	
+	@Override
+	public void getAdjacencyMatrix() {
+		this.graph.getAdjacencyMatrix();
+	}
 
 	@Override
 	public int getNumVertices() {

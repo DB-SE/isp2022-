@@ -7,6 +7,7 @@ import edge.Edge;
 import edge.WeightedEdge;
 import graph.IGraph;
 import graph.UndirectedGraph;
+import node.Node;
 
 public class WeightedGraphDecorator extends AbstractGraphDecorator {
 	public WeightedGraphDecorator(IGraph graph) {

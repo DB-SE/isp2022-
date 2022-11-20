@@ -13,4 +13,5 @@ public interface IGraph {
 	public HashMap<Node, List<Edge>> getEdgesByVertices();
 	public List<Edge> getEdgesAsList();
 	public int getNumVertices();
+	public void getAdjacencyMatrix();
 }
