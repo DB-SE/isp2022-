@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature name="Graph"/>
+	<feature name="Type"/>
+	<feature name="DirectedGraph"/>
+	<feature name="UndirectedGraph"/>
+	<feature name="Edge"/>
+	<feature name="WeightedGraph"/>
+	<feature name="Node"/>
+	<feature name="LabeledGraph"/>
+	<feature name="ColoredGraph"/>
+	<feature name="Algorithms"/>
+	<feature name="MST"/>
+	<feature name="DFS"/>
+	<feature name="GetAdjacencyMatrix"/>
+</configuration>
