@@ -23,16 +23,16 @@
 				<graphics key="collapsed" value="false"/>
 				<feature name="WeightedGraph"/>
 			</and>
-			<or mandatory="true" name="Node">
+			<and mandatory="true" name="Node">
 				<graphics key="collapsed" value="false"/>
 				<feature name="LabeledGraph"/>
 				<feature name="ColoredGraph"/>
-			</or>
+			</and>
 			<and abstract="true" mandatory="true" name="Algorithms">
 				<graphics key="collapsed" value="false"/>
 				<feature mandatory="true" name="MST"/>
 				<feature mandatory="true" name="DFS"/>
-				<feature name="GetAdjacencyMatrix"/>
+				<feature mandatory="true" name="GetAdjacencyMatrix"/>
 			</and>
 		</and>
 	</struct>

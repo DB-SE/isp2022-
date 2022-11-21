@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <configuration>
-	<feature name="Graph"/>
-	<feature name="Type"/>
+	<feature automatic="selected" name="Graph"/>
+	<feature automatic="selected" name="Type"/>
 	<feature name="DirectedGraph"/>
 	<feature name="UndirectedGraph"/>
-	<feature name="Edge"/>
+	<feature automatic="selected" name="Edge"/>
 	<feature name="WeightedGraph"/>
-	<feature name="Node"/>
+	<feature automatic="selected" name="Node"/>
 	<feature name="LabeledGraph"/>
 	<feature name="ColoredGraph"/>
-	<feature name="Algorithms"/>
-	<feature name="MST"/>
-	<feature name="DFS"/>
-	<feature name="GetAdjacencyMatrix"/>
+	<feature automatic="selected" name="Algorithms"/>
+	<feature automatic="selected" name="MST"/>
+	<feature automatic="selected" name="DFS"/>
+	<feature automatic="selected" name="GetAdjacencyMatrix"/>
 </configuration>
