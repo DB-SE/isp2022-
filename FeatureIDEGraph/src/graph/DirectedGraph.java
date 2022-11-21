@@ -7,7 +7,6 @@ import java.util.List;
 import edge.Edge;
 import edge.WeightedEdge;
 import node.Node;
-import node;
 
 public class DirectedGraph implements IGraph {
 	private int numVertices;

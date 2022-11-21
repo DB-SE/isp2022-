@@ -10,7 +10,7 @@ public class ISPGraphs {
 		IGraph graph;
 		
 		// #if DirectedGraph
-//@		graph = new DirectedGraph();
+		graph = new DirectedGraph();
 		// #endif
 		// #if UndirectedGraph
 //@		graph = new UndirectedGraph();
