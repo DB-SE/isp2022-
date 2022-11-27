@@ -1,8 +1,21 @@
 package main;
 
-import decorator.LabeledGraphDecorator;
-import decorator.WeightedGraphDecorator;
-import graph.DirectedGraph;
+// #if LabeledGraph 
+//@import decorator.LabeledGraphDecorator;
+// #endif
+//#if DirectedGraph
+//@import graph.DirectedGraph;
+//#endif
+
+// #if UndirectedGraph
+import graph.UndirectedGraph;
+// #endif
+// #if WeightedGraph
+//@import decorator.WeightedGraphDecorator;
+// #endif
+// #if ColoredGraph 
+//@import decorator.ColoredGraphDecorator;
+// #endif
 import graph.IGraph;
 
 public class ISPGraphs {
@@ -10,19 +23,19 @@ public class ISPGraphs {
 		IGraph graph;
 		
 		// #if DirectedGraph
-		graph = new DirectedGraph();
+//@		graph = new DirectedGraph();
 		// #endif
 		// #if UndirectedGraph
-//@		graph = new UndirectedGraph();
+		graph = new UndirectedGraph();
 		// #endif
 		// #if LabeledGraph
-//@		graph = new LabeledGraph(graph);
+//@		graph = new LabeledGraphDecorator(graph);
 		// #endif
 		// #if ColoredGraph
-//@		graph = new ColoredGraph(graph);
+//@		graph = new ColoredGraphDecorator(graph);
 		// #endif		
-		// #if WeightedEdge
-//@		graph = new WeightedGraph(graph);
+		// #if WeightedGraph
+//@		graph = new WeightedGraphDecorator(graph);
 		// #endif
 	}
 }

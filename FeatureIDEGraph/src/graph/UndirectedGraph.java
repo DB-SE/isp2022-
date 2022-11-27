@@ -1,3 +1,4 @@
+// #if UndirectedGraph
 package graph;
 
 import java.util.ArrayList;
@@ -145,5 +146,5 @@ public class UndirectedGraph implements IGraph {
 		return this.numVertices;
 	}
 }
-
+// #endif
 
