@@ -21,8 +21,8 @@ public abstract class AbstractGraphDecorator implements IGraph {
 	}
 
 	@Override
-	public void DFS(Node start) {
-		this.graph.DFS(start);
+	public void Traverse(Node start) {
+		this.graph.Traverse(start);
 	}
 
 	@Override

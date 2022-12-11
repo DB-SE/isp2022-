@@ -30,8 +30,11 @@
 			</and>
 			<and abstract="true" mandatory="true" name="Algorithms">
 				<graphics key="collapsed" value="false"/>
+				<alt abstract="true" mandatory="true" name="Search">
+					<feature name="DFS"/>
+					<feature name="BFS"/>
+				</alt>
 				<feature mandatory="true" name="MST"/>
-				<feature mandatory="true" name="DFS"/>
 				<feature mandatory="true" name="GetAdjacencyMatrix"/>
 			</and>
 		</and>

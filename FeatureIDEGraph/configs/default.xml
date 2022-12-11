@@ -2,15 +2,17 @@
 <configuration>
 	<feature automatic="selected" name="Graph"/>
 	<feature automatic="selected" name="Type"/>
-	<feature automatic="unselected" name="DirectedGraph"/>
-	<feature manual="selected" name="UndirectedGraph"/>
+	<feature manual="selected" name="DirectedGraph"/>
+	<feature automatic="unselected" name="UndirectedGraph"/>
 	<feature automatic="selected" name="Edge"/>
 	<feature name="WeightedGraph"/>
 	<feature automatic="selected" name="Node"/>
 	<feature name="LabeledGraph"/>
 	<feature name="ColoredGraph"/>
 	<feature automatic="selected" name="Algorithms"/>
+	<feature automatic="selected" name="Search"/>
+	<feature automatic="unselected" name="DFS"/>
+	<feature manual="selected" name="BFS"/>
 	<feature automatic="selected" name="MST"/>
-	<feature automatic="selected" name="DFS"/>
 	<feature automatic="selected" name="GetAdjacencyMatrix"/>
 </configuration>
