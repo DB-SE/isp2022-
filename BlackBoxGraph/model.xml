@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="488,193"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Graph">
+			<graphics key="collapsed" value="false"/>
+			<alt abstract="true" mandatory="true" name="Type">
+				<graphics key="collapsed" value="false"/>
+				<feature name="DirectedGraph"/>
+				<feature name="UndirectedGraph"/>
+			</alt>
+			<and mandatory="true" name="Edge">
+				<graphics key="collapsed" value="false"/>
+				<feature name="WeightedGraph"/>
+			</and>
+			<and mandatory="true" name="Node">
+				<graphics key="collapsed" value="false"/>
+				<feature name="LabeledGraph"/>
+				<feature name="ColoredGraph"/>
+			</and>
+			<and abstract="true" mandatory="true" name="Algorithms">
+				<graphics key="collapsed" value="false"/>
+				<alt abstract="true" mandatory="true" name="Search">
+					<feature name="DFS"/>
+					<feature name="BFS"/>
+				</alt>
+				<feature mandatory="true" name="MST"/>
+				<feature mandatory="true" name="GetAdjacencyMatrix"/>
+			</and>
+		</and>
+	</struct>
+</featureModel>
