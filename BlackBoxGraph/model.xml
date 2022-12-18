@@ -2,7 +2,7 @@
 <featureModel>
 	<properties>
 		<graphics key="autolayoutconstraints" value="false"/>
-		<graphics key="legendposition" value="488,193"/>
+		<graphics key="legendposition" value="396,208"/>
 		<graphics key="legendautolayout" value="false"/>
 		<graphics key="showconstraints" value="true"/>
 		<graphics key="showshortnames" value="false"/>
@@ -21,12 +21,18 @@
 			</alt>
 			<and mandatory="true" name="Edge">
 				<graphics key="collapsed" value="false"/>
-				<feature name="WeightedGraph"/>
+				<and name="WeightedEdge">
+					<feature name="WeightedGraph"/>
+				</and>
 			</and>
 			<and mandatory="true" name="Node">
 				<graphics key="collapsed" value="false"/>
-				<feature name="LabeledGraph"/>
-				<feature name="ColoredGraph"/>
+				<and name="ColoredNode">
+					<feature name="ColoredGraph"/>
+				</and>
+				<and name="LabeledNode">
+					<feature name="LabeledGraph"/>
+				</and>
 			</and>
 			<and abstract="true" mandatory="true" name="Algorithms">
 				<graphics key="collapsed" value="false"/>
@@ -34,8 +40,8 @@
 					<feature name="DFS"/>
 					<feature name="BFS"/>
 				</alt>
-				<feature mandatory="true" name="MST"/>
-				<feature mandatory="true" name="GetAdjacencyMatrix"/>
+				<feature name="MST"/>
+				<feature name="GetAdjacencyMatrix"/>
 			</and>
 		</and>
 	</struct>

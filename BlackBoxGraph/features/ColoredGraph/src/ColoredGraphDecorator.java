@@ -1,11 +1,11 @@
 
 
 import abstractClasses.AbstractGraphDecorator;
-import edge.Edge;
+import interfaces.IColoredNode;
+import interfaces.IEdge;
 import interfaces.IGraph;
-import node.ColoredNode;
-import node.LabeledNode;
-import node.Node;
+import interfaces.ILabeledNode;
+import interfaces.INode;
 
 public class ColoredGraphDecorator extends AbstractGraphDecorator {
 
@@ -15,23 +15,24 @@ public class ColoredGraphDecorator extends AbstractGraphDecorator {
 
 
 	@Override
-	public void addEdge(Edge edge) {
+	public void addEdge(IEdge edge) {
 
-		Node source = edge.getSource();
-		Node target = edge.getTarget();
+		INode source = edge.getSource();
+		INode target = edge.getTarget();
 
-		if(!(edge.getSource() instanceof ColoredNode)) {
-			source = (ColoredNode)edge.getSource();
-			((ColoredNode)source).setColor("white");
+		if(!(edge.getSource() instanceof IColoredNode)) {
+			source = (IColoredNode)edge.getSource();
+			((IColoredNode)source).setColor("white");
 		}
 
-		if(!(edge.getTarget() instanceof ColoredNode)) {
-			target = (LabeledNode)edge.getTarget();
-			((ColoredNode)target).setColor("white");
+		if(!(edge.getTarget() instanceof IColoredNode)) {
+			target = (ILabeledNode)edge.getTarget();
+			((IColoredNode)target).setColor("white");
 		}
+		
+		edge.setSource(source);
+		edge.setTarget(target);
 
-		Edge coloredEdge = new Edge(source, target);
-
-		this.graph.addEdge(coloredEdge);
+		this.graph.addEdge(edge);
 	}
 }

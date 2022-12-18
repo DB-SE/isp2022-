@@ -3,35 +3,31 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
-import edge.Edge;
-import edge.WeightedEdge;
-import node.Node;
+import interfaces.IEdge;
+import interfaces.INode;
 import interfaces.IGraph;
-import interfaces.IAlgorithms;
 
 
-public class DirectedGraph implements IGraph, IAlgorithms {
+public class DirectedGraph implements IGraph {
 	private int numVertices;
-	private HashMap<Node, List<Edge>> edgesByVertices;
+	private HashMap<INode, List<IEdge>> edgesByVertices;
 	
 	public DirectedGraph() {
-		this.edgesByVertices = new HashMap<Node, List<Edge>>();
+		this.edgesByVertices = new HashMap<INode, List<IEdge>>();
 		this.numVertices = 0;
 	}
 	
 	@Override
-	public void addEdge(Edge edge) {
+	public void addEdge(IEdge edge) {
 		System.out.println(this.edgesByVertices.get(edge.getSource()));
 		if (this.edgesByVertices.get(edge.getSource()) == null) {
-			this.edgesByVertices.put(edge.getSource(), new ArrayList<Edge>());
+			this.edgesByVertices.put(edge.getSource(), new ArrayList<IEdge>());
 			this.numVertices++;
 		}
 		
 		if (this.edgesByVertices.get(edge.getTarget()) == null) {
-			this.edgesByVertices.put(edge.getTarget(), new ArrayList<Edge>());
+			this.edgesByVertices.put(edge.getTarget(), new ArrayList<IEdge>());
 			this.numVertices++;
 		}
 
@@ -39,77 +35,12 @@ public class DirectedGraph implements IGraph, IAlgorithms {
 		this.edgesByVertices.get(edge.getSource()).add(edge);
 	}
 	
-
-	public void DFSTraverse(Node current, HashMap<Node, Boolean> visited) {
-		System.out.println("" + current.toString() + " -> ");
-		visited.put(current, true);
-		List<Edge> edgeList = this.edgesByVertices.get(current);
-		for (Edge edge : edgeList) {
-			Node connected = edge.getConnected(current);
-			if (connected == null) {
-				continue;
-			}
-			
-			if (visited.get(connected)) {
-				continue;
-			}
-			this.DFSTraverse(connected, visited);
-		}
-	}
-	
-	@Override
-	public void TraverseBFS(Node start) {
-		HashMap<Node, Boolean> visited = new HashMap<Node, Boolean>();
+	public List<IEdge> getEdgesAsList() {
+		List<IEdge> allEdges = new ArrayList<IEdge>();
 		
-		for(Node label : this.edgesByVertices.keySet()) {
-			visited.put(label, false);
-		}
-		
-		this.DFSTraverse(start, visited);
-	}
-	
-		public void BFSTraverse(Queue<Node> nodeQueue, HashMap<Node, Boolean> visited) {
-			Node front = nodeQueue.remove();
-			
-			if (front == null) {
-				return;
-			}
-			
-			List<Edge> edgeList = this.edgesByVertices.get(front);
-			for (Edge edge: edgeList) {
-				Node connected = edge.getConnected(front);
-				if (connected == null) {
-					continue;
-				}
-				
-				if (visited.get(connected) == false) {
-					visited.put(connected, true);
-					nodeQueue.add(connected);
-				}
-			}
-			
-			this.BFSTraverse(nodeQueue, visited);
-		}
-		
-	@Override
-	public void TraverseDFS(Node start) {
-		HashMap<Node, Boolean> visited = new HashMap<Node, Boolean>();		
-		for(Node label : this.edgesByVertices.keySet()) {
-			visited.put(label, false);
-		}
-
-		Queue<Node> nodeQueue = new ConcurrentLinkedQueue<Node>();
-		nodeQueue.add(start);
-					
-		this.BFSTraverse(nodeQueue, visited);
-	}
-	
-	public List<Edge> getEdgesAsList() {
-		List<Edge> allEdges = new ArrayList<Edge>();
-		
-		for (Node node : this.edgesByVertices.keySet())
+		for (INode node : this.edgesByVertices.keySet())
 		{
-			for(Edge edge : this.edgesByVertices.get(node))
+			for(IEdge edge : this.edgesByVertices.get(node))
 			{
 				allEdges.add(edge);
 			}
@@ -117,75 +48,21 @@ public class DirectedGraph implements IGraph, IAlgorithms {
 		
 		return allEdges;
 	}
-	
-	public DirectedGraph MST() {
-		DirectedGraph minGraph = new DirectedGraph();
-		
-		List<Node> included = new ArrayList<Node>();
-			
-		List<Edge> allEdges = this.getEdgesAsList();
-		
-		while(minGraph.getNumVertices() != this.getNumVertices())
-		{
-			for(Edge edge : allEdges)
-			{
-				if(included.isEmpty())
-				{
-					minGraph.addEdge(edge);
-					included.add(edge.getSource());
-					included.add(edge.getTarget());
-				}
-				else if(included.contains(edge.getSource()) ^ included.contains(edge.getTarget()))
-				{
-					minGraph.addEdge(edge);
-					if(!included.contains(edge.getSource()))
-					{
-						included.add(edge.getSource());
-					}
-					if(!included.contains(edge.getTarget()))
-					{
-						included.add(edge.getTarget());
-					}
-				}
-			}
-		}
-		
-		return minGraph;
-	}
-	
-	@Override
-	public void getAdjacencyMatrix() {
-		int[][] matrix = new int[this.numVertices][this.numVertices];
-		
-		int i = 0;
-		for (Node node : this.edgesByVertices.keySet()) {
-			for (Edge edge : this.edgesByVertices.get(node)) {
-				int j = 0;
-				for (Node targetNode : this.edgesByVertices.keySet()) {
-					if (targetNode == edge.getTarget()) {
-						if (edge instanceof WeightedEdge) {
-							matrix[i][j] = ((WeightedEdge)edge).getWeight();
-						} else {
-							matrix[i][j] = 1;
-						}
-					}
-				}
-				j++;
-			}
-			i++;
-		}
-		
-		System.out.println(matrix);
-	}
 
 	@Override
-	public HashMap<Node, List<Edge>> getEdgesByVertices() {
+	public HashMap<INode, List<IEdge>> getEdgesByVertices() {
 		return this.edgesByVertices;
 	}
 
 	@Override
 	public int getNumVertices() {
 		return this.numVertices;
+	}
+	
+	@Override
+	public void resetGraph() {
+		this.edgesByVertices = new HashMap<INode, List<IEdge>>();
+		this.numVertices = 0;
 	}
 }
 

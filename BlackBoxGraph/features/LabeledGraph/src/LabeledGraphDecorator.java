@@ -1,10 +1,11 @@
 
 
-import edge.Edge;
+import interfaces.IEdge;
 import interfaces.IGraph;
+
 import abstractClasses.AbstractGraphDecorator;
-import node.LabeledNode;
-import node.Node;
+import interfaces.ILabeledNode;
+import interfaces.INode;
 
 public class LabeledGraphDecorator extends AbstractGraphDecorator {
 
@@ -14,23 +15,24 @@ public class LabeledGraphDecorator extends AbstractGraphDecorator {
 
 
 	@Override
-	public void addEdge(Edge edge) {
+	public void addEdge(IEdge edge) {
 
-		Node source = edge.getSource();
-		Node target = edge.getTarget();
+		INode source = edge.getSource();
+		INode target = edge.getTarget();
 
-		if(!(edge.getSource() instanceof LabeledNode)) {
-			source = (LabeledNode)edge.getSource();
-			((LabeledNode)source).setLabel(source.toString());
+		if(!(edge.getSource() instanceof ILabeledNode)) {
+			source = (ILabeledNode)edge.getSource();
+			((ILabeledNode)source).setLabel(source.toString());
 		}
 
-		if(!(edge.getTarget() instanceof LabeledNode)) {
-			target = (LabeledNode)edge.getTarget();
-			((LabeledNode)target).setLabel(target.toString());
+		if(!(edge.getTarget() instanceof ILabeledNode)) {
+			target = (ILabeledNode)edge.getTarget();
+			((ILabeledNode)target).setLabel(target.toString());
 		}
 
-		Edge labeledEdge = new Edge(source, target);
+		edge.setSource(source);
+		edge.setTarget(target);
 
-		this.graph.addEdge(labeledEdge);
+		this.graph.addEdge(edge);
 	}
 }

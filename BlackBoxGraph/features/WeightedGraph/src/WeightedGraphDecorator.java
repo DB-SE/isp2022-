@@ -1,13 +1,8 @@
 
-import java.util.ArrayList;
-import java.util.List;
-
 import abstractClasses.AbstractGraphDecorator;
-import edge.Edge;
-import edge.WeightedEdge;
+import interfaces.IEdge;
+import interfaces.IWeightedEdge;
 import interfaces.IGraph;
-import node.Node;
-import UndirectedGraph;
 
 public class WeightedGraphDecorator extends AbstractGraphDecorator {
 	public WeightedGraphDecorator(IGraph graph) {
@@ -15,59 +10,11 @@ public class WeightedGraphDecorator extends AbstractGraphDecorator {
 	}
 	
 	@Override
-	public void addEdge(Edge edge) {
-		if (!(edge instanceof WeightedEdge)) {
-			this.graph.addEdge(new WeightedEdge(edge.getSource(), edge.getTarget(), 1));
+	public void addEdge(IEdge edge) {
+		if (!(edge instanceof IWeightedEdge)) {
+			this.graph.addEdge((IWeightedEdge)edge);
 			return;
 		}
 		this.graph.addEdge(edge);
 	}
-
-	@Override
-	public IGraph MST() {
-
-		
-		IGraph minGraph = new WeightedGraphDex();
-		
-		List<Node> included = new ArrayList<Node>();
-			
-		List<Edge> allEdges = this.getEdgesAsList();
-		
-		while(minGraph.getNumVertices() != this.getNumVertices())
-		{
-			int minWeight = 0;
-			WeightedEdge minEdge = null;
-		
-			for(Edge edge : allEdges)
-			{
-				WeightedEdge weighted = (WeightedEdge) edge;
-				if(included.isEmpty())
-				{
-					minGraph.addEdge(weighted);
-					included.add(edge.getSource());
-					included.add(edge.getTarget());
-				}
-				else if(included.contains(edge.getSource()) ^ included.contains(edge.getTarget()))
-				{
-					if(weighted.getWeight() <= minWeight)
-					{
-						minEdge = weighted;
-					}
-				}
-			}
-			
-			minGraph.addEdge(minEdge);
-			if(!included.contains(minEdge.getSource()))
-			{
-				included.add(minEdge.getSource());
-			}
-			if(!included.contains(minEdge.getTarget()))
-			{
-				included.add(minEdge.getTarget());
-			}
-		}
-		
-		return minGraph;
-	}
 }
-// #endif

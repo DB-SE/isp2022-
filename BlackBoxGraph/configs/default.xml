@@ -5,10 +5,13 @@
 	<feature automatic="unselected" name="DirectedGraph"/>
 	<feature manual="selected" name="UndirectedGraph"/>
 	<feature automatic="selected" name="Edge"/>
+	<feature automatic="selected" name="WeightedEdge"/>
 	<feature manual="selected" name="WeightedGraph"/>
 	<feature automatic="selected" name="Node"/>
-	<feature manual="selected" name="LabeledGraph"/>
+	<feature automatic="selected" name="ColoredNode"/>
 	<feature manual="selected" name="ColoredGraph"/>
+	<feature automatic="selected" name="LabeledNode"/>
+	<feature manual="selected" name="LabeledGraph"/>
 	<feature automatic="selected" name="Algorithms"/>
 	<feature automatic="selected" name="Search"/>
 	<feature manual="selected" name="DFS"/>
