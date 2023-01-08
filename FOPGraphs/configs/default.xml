@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Graph"/>
+	<feature automatic="selected" name="Type"/>
+	<feature manual="selected" name="DirectedGraph"/>
+	<feature automatic="unselected" name="UndirectedGraph"/>
+	<feature automatic="selected" name="Edge"/>
+	<feature manual="selected" name="WeightedGraph"/>
+	<feature automatic="selected" name="Node"/>
+	<feature manual="selected" name="LabeledGraph"/>
+	<feature name="ColoredGraph"/>
+	<feature automatic="selected" name="Algorithms"/>
+	<feature automatic="selected" name="Search"/>
+	<feature manual="selected" name="DFS"/>
+	<feature automatic="unselected" name="BFS"/>
+	<feature automatic="selected" name="MST"/>
+	<feature automatic="selected" name="GetAdjacencyMatrix"/>
+</configuration>
