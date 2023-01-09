@@ -2,13 +2,13 @@
 <configuration>
 	<feature automatic="selected" name="Graph"/>
 	<feature automatic="selected" name="Type"/>
-	<feature automatic="unselected" name="DirectedGraph"/>
-	<feature manual="selected" name="UndirectedGraph"/>
+	<feature manual="selected" name="DirectedGraph"/>
+	<feature automatic="unselected" name="UndirectedGraph"/>
 	<feature automatic="selected" name="Edge"/>
 	<feature manual="selected" name="WeightedGraph"/>
 	<feature automatic="selected" name="Node"/>
-	<feature manual="selected" name="LabeledGraph"/>
-	<feature name="ColoredGraph"/>
+	<feature name="LabeledGraph"/>
+	<feature manual="selected" name="ColoredGraph"/>
 	<feature automatic="selected" name="Algorithms"/>
 	<feature automatic="selected" name="Search"/>
 	<feature manual="selected" name="DFS"/>

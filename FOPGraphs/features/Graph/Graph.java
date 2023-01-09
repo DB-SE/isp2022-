@@ -14,11 +14,6 @@ public class Graph implements IGraph {
 
 	@Override
 	public void addEdge(Edge edge) {
-		System.out.println("test");
-		System.out.println(edge.getSource());
-		System.out.println(edge.getTarget());
-		System.out.println(this.edgesByVertices.get(edge.getSource()));
-		System.out.println(this.edgesByVertices.get(edge.getTarget()));
 		if (this.edgesByVertices.get(edge.getSource()) == null) {
 			this.edgesByVertices.put(edge.getSource(), new ArrayList<Edge>());
 			this.numVertices++;
@@ -28,10 +23,6 @@ public class Graph implements IGraph {
 			this.edgesByVertices.put(edge.getTarget(), new ArrayList<Edge>());
 			this.numVertices++;
 		}
-		System.out.println(edge.getSource());
-		System.out.println(edge.getTarget());
-		System.out.println(this.edgesByVertices.get(edge.getSource()));
-		System.out.println(this.edgesByVertices.get(edge.getTarget()));
 		
 		// FOP composition adds code here
 	}
@@ -84,6 +75,6 @@ public class Graph implements IGraph {
 		
 		graph.addEdge(edge);
 		
-		graph.Traverse(node);
+		graph.Traverse(graph.getEdgesAsList().get(0).getSource());
 	}
 }

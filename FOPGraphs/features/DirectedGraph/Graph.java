@@ -7,6 +7,7 @@ public class Graph {
 	public void addEdge(Edge edge) {
 		original(edge);
 		
+		System.out.println(this.edgesByVertices.get(edge.getSource()));
 		this.edgesByVertices.get(edge.getSource()).add(edge);
 	}
 }

@@ -6,6 +6,7 @@ class Graph {
 	public void addEdge(Edge edge) {
 		if (!(edge instanceof WeightedEdge)) {
 			original(new WeightedEdge(edge.getSource(), edge.getTarget(), 1));
+			System.out.println(this.edgesByVertices.get(edge.getSource()));
 			return;
 		}
 		

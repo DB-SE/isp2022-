@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Graph {
 	
@@ -8,7 +10,8 @@ public class Graph {
 		if (front == null) {
 			return;
 		}
-			
+		
+		System.out.println(this.edgesByVertices.get(front));
 		List<Edge> edgeList = this.edgesByVertices.get(front);
 		for (Edge edge: edgeList) {
 			Node connected = edge.getConnected(front);
@@ -31,6 +34,9 @@ public class Graph {
 			visited.put(label, false);
 		}
 		
-		this.BFSTraverse(start, visited);
+		Queue<Node> nodeQueue = new ConcurrentLinkedQueue<Node>();
+		nodeQueue.add(start);
+		
+		this.BFSTraverse(nodeQueue, visited);
 	}
 }

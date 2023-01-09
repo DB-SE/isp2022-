@@ -19,5 +19,6 @@ public class Graph {
 		Edge coloredEdge = new Edge(source, target);
 	
 		original(coloredEdge);
+		System.out.println(this.edgesByVertices.get(coloredEdge.getSource()));
 	}
 }
