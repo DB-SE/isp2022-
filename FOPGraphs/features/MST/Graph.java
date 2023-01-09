@@ -1,22 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import edge.Edge;
-import graph.IGraph;
-import node.Node;
-
 /**
  * TODO description
  */
 public class Graph {
-	public Graph() {
-		original();
-	}
 	
 	// minGraph needs to be passed by the feature, its ugly i know
+	@Override
 	public IGraph MST() {
 			
-		IGraph graph = new Graph();
+		IGraph minGraph = new Graph();
 		
 		List<Node> included = new ArrayList<Node>();
 				
@@ -46,6 +40,8 @@ public class Graph {
 				}
 			}
 		}
+		
+		original();
 			
 		return minGraph;
 	}

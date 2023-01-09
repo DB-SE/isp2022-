@@ -1,12 +1,10 @@
 /**
  * TODO description
  */
-public class Node {
+public class ColoredNode extends Node {
 	private String color;
 
-	public Node(String color) {
-		original();
-		
+	public ColoredNode(String color) {
 		this.color = color;
 	}
 

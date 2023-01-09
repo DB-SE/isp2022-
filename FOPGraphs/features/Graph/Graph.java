@@ -1,10 +1,6 @@
-package graph;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import edge.Edge;
-import node.Node;
 
 public class Graph implements IGraph {
 	
@@ -58,19 +54,27 @@ public class Graph implements IGraph {
 	
 	@Override
 	public void Traverse(Node start) {
-		System.out.println("Default implementation of Traverse method. Returning...");
-		return;
 	}
 	
 	@Override
 	public IGraph MST() {
-		System.out.println("Default implementation of MST method. Returning...");
 		return null;
 	}
 	
 	@Override
 	public void getAdjacencyMatrix() {
-		System.out.println("Default implementation of getAdjacencyMatrix method. Returning...");
-		return;
+	}
+	
+	public static void main(String[] args) {
+		
+		Node node = new Node();
+		Node connected = new Node();
+		Edge edge = new Edge(node, connected);
+		
+		Graph graph = new Graph();
+		
+		graph.addEdge(edge);
+		
+		graph.Traverse(node);
 	}
 }

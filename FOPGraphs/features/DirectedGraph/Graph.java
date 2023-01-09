@@ -3,8 +3,9 @@
  */
 public class Graph {
 	
+	@Override
 	public void addEdge(Edge edge) {
-		orginal(edge);
+		original(edge);
 		
 		this.edgesByVertices.get(edge.getSource()).add(edge);
 	}

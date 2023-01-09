@@ -2,9 +2,6 @@
  * TODO description
  */
 public class Graph {
-	public Graph() {
-		original(graph);
-	}
 
 	public void addEdge(Edge edge) {
 
@@ -12,13 +9,11 @@ public class Graph {
 		Node target = edge.getTarget();
 	
 		if(!(edge.getSource() instanceof ColoredNode)) {
-			source = (ColoredNode)edge.getSource();
-			((ColoredNode)source).setColor("white");
+			source = new ColoredNode("white");
 		}
 	
 		if(!(edge.getTarget() instanceof ColoredNode)) {
-			target = (LabeledNode)edge.getTarget();
-			((ColoredNode)target).setColor("white");
+			target = new ColoredNode("white");
 		}
 	
 		Edge coloredEdge = new Edge(source, target);

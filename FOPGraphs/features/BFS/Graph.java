@@ -1,11 +1,6 @@
 import java.util.HashMap;
 
-import node.Node;
-
 public class Graph {
-	public Graph() {
-		original();
-	}
 	
 	public void BFSTraverse(Queue<Node> nodeQueue, HashMap<Node, Boolean> visited) {
 		Node front = nodeQueue.remove();
@@ -36,6 +31,8 @@ public class Graph {
 			visited.put(label, false);
 		}
 		
-		this.BFSTraverse(start, null);
+		this.BFSTraverse(start, visited);
+		
+		original(start);
 	}
 }

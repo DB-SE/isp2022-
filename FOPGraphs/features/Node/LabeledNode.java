@@ -1,9 +1,7 @@
-public class Node {
+public class LabeledNode extends Node {
 	private String label;
 
-	public Node(String label) {
-		original();
-		
+	public LabeledNode(String label) {
 		this.label = label;
 	}
 

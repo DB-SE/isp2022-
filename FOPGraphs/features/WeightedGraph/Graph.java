@@ -1,30 +1,11 @@
-// #if WeightedGraph
-package decorator;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import edge.Edge;
-import edge.WeightedEdge;
-import graph.IGraph;
-//#if UndirectedGraph
-import graph.UndirectedGraph;
-// #endif
-// #if DirectedGraph
-import graph.DirectedGraph;
-// #endif
-import node.Node;
 
 class Graph {
 
-	public Graph() {
-		original(graph);
-	}
 	
 	@Override
 	public void addEdge(Edge edge) {
 		if (!(edge instanceof WeightedEdge)) {
-			this.graph.addEdge(new WeightedEdge(edge.getSource(), edge.getTarget(), 1));
+			original(new WeightedEdge(edge.getSource(), edge.getTarget(), 1));
 			return;
 		}
 		
@@ -33,6 +14,8 @@ class Graph {
 
 	@Override
 	public IGraph MST() {
+		
+		Graph minGraph = new Graph();
 		
 		List<Node> included = new ArrayList<Node>();
 			

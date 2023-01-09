@@ -2,8 +2,8 @@
 <configuration>
 	<feature automatic="selected" name="Graph"/>
 	<feature automatic="selected" name="Type"/>
-	<feature manual="selected" name="DirectedGraph"/>
-	<feature automatic="unselected" name="UndirectedGraph"/>
+	<feature automatic="unselected" name="DirectedGraph"/>
+	<feature manual="selected" name="UndirectedGraph"/>
 	<feature automatic="selected" name="Edge"/>
 	<feature manual="selected" name="WeightedGraph"/>
 	<feature automatic="selected" name="Node"/>

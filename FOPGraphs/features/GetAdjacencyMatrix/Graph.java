@@ -1,14 +1,7 @@
-import edge.Edge;
-import edge.WeightedEdge;
-import node.Node;
-
 /**
  * TODO description
  */
 public class Graph {
-	public Graph() {
-		original();
-	}
 
 	public void getAdjacencyMatrix() {
 		int[][] matrix = new int[this.numVertices][this.numVertices];
@@ -32,5 +25,7 @@ public class Graph {
 		}
 		
 		System.out.println(matrix);
+		
+		original();
 	}
 }

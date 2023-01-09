@@ -1,9 +1,4 @@
-import edge.Edge;
-
 public class Graph {
-	public Graph() {
-		original();
-	}
 	
 	public void addEdge(Edge edge) {
 		original(edge);

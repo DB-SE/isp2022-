@@ -12,7 +12,7 @@
 		<graphics key="layoutalgorithm" value="1"/>
 	</properties>
 	<struct>
-		<and abstract="true" mandatory="true" name="Graph">
+		<and mandatory="true" name="Graph">
 			<graphics key="collapsed" value="false"/>
 			<alt abstract="true" mandatory="true" name="Type">
 				<graphics key="collapsed" value="false"/>
@@ -42,14 +42,15 @@
 	<featureOrder userDefined="true">
 		<feature name="Node"/>
 		<feature name="Edge"/>
+		<feature name="Graph"/>
 		<feature name="DirectedGraph"/>
 		<feature name="UndirectedGraph"/>
+		<feature name="WeightedGraph"/>
 		<feature name="DFS"/>
 		<feature name="BFS"/>
 		<feature name="MST"/>
 		<feature name="GetAdjacencyMatrix"/>
-		<feature name="WeightedGraph"/>
-		<feature name="LabeledGraph"/>
 		<feature name="ColoredGraph"/>
+		<feature name="LabeledGraph"/>
 	</featureOrder>
 </featureModel>

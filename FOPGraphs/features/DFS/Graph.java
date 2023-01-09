@@ -1,14 +1,9 @@
 import java.util.HashMap;
 
-import node.Node;
-
 /**
  * TODO description
  */
 public class Graph {
-	public Graph() {
-		original();
-	}
 	
 	public void DFSTraverse(Node current, HashMap<Node, Boolean> visited) {
 		System.out.println("" + current.toString() + " -> ");
@@ -28,11 +23,13 @@ public class Graph {
 	}
 	
 	public void Traverse(Node start) {
+		original(start);
 		HashMap<Node, Boolean> visited = new HashMap<Node, Boolean>();
 		for(Node label : this.edgesByVertices.keySet()) {
 			visited.put(label, false);
 		}
 		
-		this.BFSTraverse(start, null);
+		this.DFSTraverse(start, visited);
+	
 	}
 }

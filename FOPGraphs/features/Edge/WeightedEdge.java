@@ -1,11 +1,11 @@
 /**
  * TODO description
  */
-public class Edge {
+public class WeightedEdge extends Edge {
 	private int weight;
 	
-	public Edge(Node source, Node target, int weight) {
-		original(source, target);
+	public WeightedEdge(Node source, Node target, int weight) {
+		super(source, target);
 		this.weight = weight;
 	}
 	
