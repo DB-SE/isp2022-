@@ -32,7 +32,5 @@ public class Graph {
 		}
 		
 		this.BFSTraverse(start, visited);
-		
-		original(start);
 	}
 }

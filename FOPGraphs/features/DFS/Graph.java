@@ -23,13 +23,11 @@ public class Graph {
 	}
 	
 	public void Traverse(Node start) {
-		original(start);
 		HashMap<Node, Boolean> visited = new HashMap<Node, Boolean>();
 		for(Node label : this.edgesByVertices.keySet()) {
 			visited.put(label, false);
 		}
 		
 		this.DFSTraverse(start, visited);
-	
 	}
 }
