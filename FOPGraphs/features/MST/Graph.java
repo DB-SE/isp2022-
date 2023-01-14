@@ -6,11 +6,9 @@ import java.util.List;
  */
 public class Graph {
 	
-	// minGraph needs to be passed by the feature, its ugly i know
-	@Override
-	public IGraph MST() {
+	public Graph MST() {
 			
-		IGraph minGraph = new Graph();
+		Graph minGraph = new Graph();
 		
 		List<Node> included = new ArrayList<Node>();
 				

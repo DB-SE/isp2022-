@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Graph implements IGraph {
+public class Graph {
 	
 	private int numVertices;
 	private HashMap<Node, List<Edge>> edgesByVertices;
@@ -12,7 +12,6 @@ public class Graph implements IGraph {
 		this.numVertices = 0;
 	}
 
-	@Override
 	public void addEdge(Edge edge) {
 		if (this.edgesByVertices.get(edge.getSource()) == null) {
 			this.edgesByVertices.put(edge.getSource(), new ArrayList<Edge>());
@@ -23,16 +22,12 @@ public class Graph implements IGraph {
 			this.edgesByVertices.put(edge.getTarget(), new ArrayList<Edge>());
 			this.numVertices++;
 		}
-		
-		// FOP composition adds code here
 	}
 	
-	@Override
 	public HashMap<Node, List<Edge>> getEdgesByVertices() {
 		return this.edgesByVertices;
 	}
 
-	@Override
 	public List<Edge> getEdgesAsList() {
 		List<Edge> allEdges = new ArrayList<Edge>();
 		
@@ -47,21 +42,17 @@ public class Graph implements IGraph {
 		return allEdges;
 	}
 
-	@Override
 	public int getNumVertices() {
 		return this.numVertices;
 	}
 	
-	@Override
 	public void Traverse(Node start) {
 	}
 	
-	@Override
 	public IGraph MST() {
 		return null;
 	}
 	
-	@Override
 	public void getAdjacencyMatrix() {
 	}
 	

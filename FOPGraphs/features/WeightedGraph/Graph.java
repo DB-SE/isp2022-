@@ -2,7 +2,6 @@
 class Graph {
 
 	
-	@Override
 	public void addEdge(Edge edge) {
 		if (!(edge instanceof WeightedEdge)) {
 			original(new WeightedEdge(edge.getSource(), edge.getTarget(), 1));
@@ -13,8 +12,7 @@ class Graph {
 		original(edge);
 	}
 
-	@Override
-	public IGraph MST() {
+	public Graph MST() {
 		
 		Graph minGraph = new Graph();
 		
